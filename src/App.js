@@ -1,5 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
+//import oracle from "oracledb";
+//import test from "./connection.js";
+
+//{result.metaData[1].name}
 
 function App() {
   return (
@@ -9,6 +13,9 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+		<p>
+		  {}
+		</p>
         <a
           className="App-link"
           href="https://reactjs.org"
