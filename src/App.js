@@ -1,9 +1,5 @@
 import logo from './logo.svg';
 import './App.css';
-//import oracle from "oracledb";
-//import test from "./connection.js";
-
-//{result.metaData[1].name}
 
 function App() {
   return (
