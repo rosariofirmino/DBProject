@@ -1,4 +1,4 @@
-let oracle = require("oracledb");
+const oracle = require('oracledb');
 
 async function test(directory, user, pw) {
 	oracle.initOracleClient({libDir: directory + "..\\instantclient-basiclite-nt-21.3.0.0.0\\instantclient_21_3"});
