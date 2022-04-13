@@ -1,18 +1,10 @@
 let oracle = require("oracledb");
 
-async function test(directory, user, pw) {
-	oracle.initOracleClient({libDir: directory + "..\\instantclient-basiclite-nt-21.3.0.0.0\\instantclient_21_3"});
-	if (typeof user != "string" || typeof pw != "string") {
-		console.log("both inputs must be strings");
-		return;
-	}
-	try {
-		let connection = await oracle.getConnection({user: user, password: pw, connectionString: "oracle.cise.ufl.edu:1521/orcl"});
-		let result = await connection.execute("select Name, Area from Continent", [], {maxRows: 5});
-		return result;
-	} catch (err) {
-		console.error(err);
-	}
+async function test(sql) {
+	//oracle.initOracleClient({libDir: __dirname + "\\..\\instantclient-basiclite-nt-21.3.0.0.0\\instantclient_21_3"});
+	let connection = await oracle.getConnection({user: "avaudreuil", password: "QKgSRkW9KgCE79AOGU61omqA", connectionString: "oracle.cise.ufl.edu:1521/orcl"});
+	let result = await connection.execute(sql);
+	return result;
 }
 
 let connection = null;
@@ -60,6 +52,25 @@ async function execute(query, fundtype, fund) {
 			else
 				return null;
 		}
+		/*
+		if (query == "y/y") {
+			//modify result to a comparison of 2020 with 2021
+			result.metadata = ["date", "2020 value", "2021 value"];
+			let rows;
+			if (fundtype == "mutual fund") {
+				for (row in result.rows) {
+					//result.rows[row] is a tuple represented by an array of values
+					let date = result.rows[row][0].toString().split(" ");
+					//date[1] is month, date[2] is day, date[3] is year
+					if (date[3] == "2020") {
+						let tuple = new Array(3);
+						tuple[0] = date[2] + " " + date[1]; //might change this to something other than a string later
+						tuple[1] = result.rows[row][1];
+					}
+				}
+			}
+		}
+		*/
 		return result;
 	} catch (err) {
 		console.error(err);
