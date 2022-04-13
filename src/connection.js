@@ -28,7 +28,7 @@ async function execute(query, fundtype, fund) {
 		return "no connection";
 	try {
 		let result;
-		if (query == "value") {
+		if (query == "value" || query == "y/y") {
 			if (fund == "all") {
 				if (fundtype == "mutual fund")
 					result = await connection.execute("select date_measured, avg(nav_per_share) from mfund_measurement group by date_measured;");
