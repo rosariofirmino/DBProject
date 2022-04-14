@@ -7,7 +7,6 @@ async function test(sql) {
 	return result;
 }
 
-let connection = null;
 try {
 	oracle.initOracleClient({libDir: __dirname + "\\..\\instantclient-basiclite-nt-21.3.0.0.0\\instantclient_21_3"});
 } catch (err) {
