@@ -8,13 +8,13 @@ import {
   Footer,
   Home,
   About,
-  Contact,
   Blog,
   Posts,
   Post,
   ETFs,
   MutualFunds,
-  Both
+  Both,
+  Vis
 } from "./components";
 
 ReactDOM.render(
@@ -24,8 +24,7 @@ ReactDOM.render(
       <Route path="/etfs" element={<ETFs/>} />
       <Route path="/mutualfunds" element={<MutualFunds/>} />
       <Route path="/both" element={<Both/>} />
-      <Route path="/about" element={<About />} />
-      <Route path="/contact" element={<Contact />} />
+      <Route path="/vis" element={<Vis />} />
     </Routes>
     <Footer />
   </Router>,

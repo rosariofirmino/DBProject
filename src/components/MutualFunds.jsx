@@ -18,7 +18,7 @@ function MutualFunds() {
             </DropdownButton>
             <Form>
               <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Control type="email"/>
+                <Form.Control/>
               </Form.Group>
               </Form>
           </div>

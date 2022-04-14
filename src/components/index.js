@@ -6,7 +6,7 @@ export { default as Both } from "./Both";
 
 export { default as MutualFunds } from "./MutualFunds";
 export { default as About } from "./About";
-export { default as Contact } from "./Contact";
+export { default as Vis } from "./Vis";
 export { default as Blog } from "./blog/Blog";
 export { default as Posts } from "./blog/Posts";
 export { default as Post } from "./blog/Post";
