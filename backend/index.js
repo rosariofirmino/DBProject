@@ -94,11 +94,38 @@ function calculateYear(result) {
 }
 
 function reformat(result) {
+	if (result == "no connection")
+		return {error: "no connection"}
 	let tuples = new Array(result.rows.length);
 	for (index = 0; index < tuples.length; index++) {
 		let date = result.rows[index][0].toString().split(" ").slice(0, 4);
+		let month;
+		if (date[1] == "Jan")
+			month = "01";
+		else if (date[1] == "Feb")
+			month = "02";
+		else if (date[1] == "Mar")
+			month = "03";
+		else if (date[1] == "Apr")
+			month = "04";
+		else if (date[1] == "May")
+			month = "05";
+		else if (date[1] == "Jun")
+			month = "06";
+		else if (date[1] == "Jul")
+			month = "07";
+		else if (date[1] == "Aug")
+			month = "08";
+		else if (date[1] == "Sep")
+			month = "09";
+		else if (date[1] == "Oct")
+			month = "10";
+		else if (date[1] == "Nov")
+			month = "11";
+		else
+			month = "12";
 		tuples[index] = {
-			date: date[0] + " " + date[2] + " " + date[1] + " " + date[3],
+			date: month + "-" + date[2] + "-" + date[3],
 			measurement: result.rows[index][1]
 		};
 	}
@@ -109,17 +136,20 @@ function reformat(result) {
 }
 
 async function sendData(request, response) {
+	let other;
 	let connection = await getConn();
-	let sql = formSQL("value", "etf", "all");
+	let sql = formSQL("value", "etf", "JIDA");
 	let result = await runQuery(connection, sql);
+	if (other) {
+		sql = formSQL("value", "etf", "all");
+		//add to this later
+	}
 	//if ("value" == "y/y")
 		//result = calculateYear(result);
 	response.json(reformat(result));
 }
 
-app.get("/api", (request, response) => {
-	sendData(request, response);
-});
+app.get("/api", (request, response) => sendData(request, response));
 app.listen(port, () => {
 	console.log("server listening on " + port);
 });
