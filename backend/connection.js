@@ -23,32 +23,32 @@ async function execute(query, fundtype, fund) {
 		if (query == "value" || query == "y/y") {
 			if (fund == "all") {
 				if (fundtype == "mutual fund")
-					result = await connection.execute("select date_measured, avg(nav_per_share) from mfund_measurement group by date_measured;");
+					result = await connection.execute("select date_measured, avg(nav_per_share) from mfund_measurement group by date_measured");
 				else if (fundtype == "etf")
-					result = await connection.execute("select date_measured, avg(adj_close) from etf_measurement group by date_measured;");
+					result = await connection.execute("select date_measured, avg(adj_close) from etf_measurement group by date_measured");
 				else
 					return null;
 			}
 			else if (fundtype == "mutual fund")
-				result = await connection.execute("select date_measured, max(nav_per_share) from mfund_measurement where symbol = " + fund + " group by date_measured;");
+				result = await connection.execute("select date_measured, max(nav_per_share) from mfund_measurement where symbol = " + fund + " group by date_measured");
 			else if (fundtype == "etf")
-				result = await connection.execute("select date_measured, max(adj_close) from etf_measurement where symbol = " + fund + " group by date_measured;");
+				result = await connection.execute("select date_measured, max(adj_close) from etf_measurement where symbol = " + fund + " group by date_measured");
 			else
 				return null;
 		}
 		else {
 			if (fund == "all") {
 				if (fundtype == "mutual fund")
-					result = await connection.execute("select date_mearued, avg(" + query + ") from mfund_measurement group by date_measured;");
+					result = await connection.execute("select date_mearued, avg(" + query + ") from mfund_measurement group by date_measured");
 				else if (fundtype == "etf")
-					result = await connection.execute("select date_measured, avg(" + query + ") from etf_measurement group by date_measured;");
+					result = await connection.execute("select date_measured, avg(" + query + ") from etf_measurement group by date_measured");
 				else
 					return null;
 			}
 			else if (fundtype == "mutual fund")
-				result = await connection.execute("select date_measured, max(" + query + ") from mfund_measurement where symbol = " + fund + " group by date_measured;");
+				result = await connection.execute("select date_measured, max(" + query + ") from mfund_measurement where symbol = " + fund + " group by date_measured");
 			else if (fundtype == "etf")
-				result = await connection.execute("select date_measured, max(" + query + ") from etf_measurement where symbol = " + fund + " group by date_measured;");
+				result = await connection.execute("select date_measured, max(" + query + ") from etf_measurement where symbol = " + fund + " group by date_measured");
 			else
 				return null;
 		}
